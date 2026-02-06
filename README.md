@@ -69,14 +69,61 @@ python --version  # Should be 3.10 or higher
 
 ## Quick Start
 
-### Generate an Error Message
+### CLI Interface (Recommended) 🚀
+
+The easiest way to use the system is through the command-line interface:
+
+```bash
+# Generate an error message
+python main.py generate-error --category license --severity 2
+
+# Route a remediation command
+python main.py route-command --action config_change --target iris.cpf \
+    --parameters '{"section":"Startup","key":"globals","value":"20000"}'
+
+# Execute a configuration change
+python main.py config-change --section Startup --key globals --value 20000
+
+# Reconfigure OS memory
+python main.py os-reconfig --resource memory --value 16384
+
+# Restart IRIS instance
+python main.py restart --mode graceful --timeout 60
+
+# Get JSON output
+python main.py generate-error --category license --severity 2 --json
+```
+
+**Available Commands:**
+- `generate-error`: Generate IRIS error messages
+- `route-command`: Route remediation commands to agents
+- `config-change`: Modify IRIS CPF configuration
+- `os-reconfig`: Reconfigure OS resources (memory, CPU)
+- `restart`: Restart IRIS instance (graceful or forced)
+
+Run `python main.py --help` or `python main.py <command> --help` for detailed options.
+
+### Quick Reference
+
+| Task | Command |
+|------|---------|
+| Generate error | `python main.py generate-error --category license --severity 2` |
+| Route from file | `python main.py route-command --file example_command.json` |
+| Change config | `python main.py config-change --section Startup --key globals --value 20000` |
+| JSON output | `python main.py --json generate-error --category license --severity 2` |
+
+See [example_command.json](example_command.json) for a sample command file.
+
+### Python API
+
+You can also use the agents directly in your Python code:
 
 ```python
-from src.agents.error_generator import ErrorGeneratorAgent
+from src.agents.error_generator_sdk import ErrorGeneratorAgentSDK
 from src.models.error_message import ErrorGenerationRequest
 
 # Initialize agent
-agent = ErrorGeneratorAgent()
+agent = ErrorGeneratorAgentSDK()
 
 # Generate a license error
 request = ErrorGenerationRequest(
@@ -93,11 +140,11 @@ print(error.to_log_format())
 ### Execute Configuration Change
 
 ```python
-from src.agents.config_agent import ConfigAgent
+from src.agents.config_agent_sdk import ConfigAgentSDK
 from src.models.remediation_command import RemediationCommand
 
 # Initialize agent
-agent = ConfigAgent(cpf_path="/usr/irissys/iris.cpf")
+agent = ConfigAgentSDK(cpf_path="/usr/irissys/iris.cpf")
 
 # Create config change command
 command = RemediationCommand(

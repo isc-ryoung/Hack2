@@ -1,0 +1,10 @@
+{
+  "action_type": "config_change",
+  "target": "iris.cpf",
+  "parameters": {
+    "section": "Startup",
+    "key": "globals",
+    "value": "20000"
+  },
+  "priority": "medium"
+}

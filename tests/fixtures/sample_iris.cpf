@@ -1,19 +1,20 @@
 [Startup]
-globals=10000
-routines=5000
-gmheap=32768
-locksiz=16777216
+globals = 20000
+routines = 5000
+gmheap = 32768
+locksiz = 16777216
 
 [config]
-bbsiz=32768
-tcpport=1972
-webserverport=52773
+bbsiz = 32768
+tcpport = 1972
+webserverport = 52773
 
 [Databases]
-IRISLIB=/usr/irissys/mgr/irislib/
-IRISSYS=/usr/irissys/mgr/irissys/
-IRISTEMP=/usr/irissys/mgr/iristemp/
+irislib = /usr/irissys/mgr/irislib/
+irissys = /usr/irissys/mgr/irissys/
+iristemp = /usr/irissys/mgr/iristemp/
 
 [Journal]
-AlternateDirectory=/journal
-FileExtensionMB=2048
+alternatedirectory = /journal
+fileextensionmb = 2048
+
