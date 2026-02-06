@@ -1,0 +1,93 @@
+{
+  "$defs": {
+    "RemediationCommand": {
+      "description": "Remediation command received from external system in JSON format.\n\nExample:\n{\n    \"command_id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"action_type\": \"config_change\",\n    \"target\": \"iris.cpf\",\n    \"parameters\": {\n        \"section\": \"Startup\",\n        \"key\": \"globals\",\n        \"value\": \"20000\"\n    },\n    \"priority\": \"high\"\n}",
+      "examples": [
+        {
+          "command_id": "550e8400-e29b-41d4-a716-446655440000",
+          "action_type": "config_change",
+          "target": "iris.cpf",
+          "parameters": {
+            "section": "Startup",
+            "key": "globals",
+            "value": "20000"
+          },
+          "priority": "high",
+          "requester": "monitoring-system"
+        },
+        {
+          "command_id": "550e8400-e29b-41d4-a716-446655440001",
+          "action_type": "os_reconfig",
+          "target": "hugepages",
+          "parameters": {
+            "resource_type": "memory",
+            "target_value": 16384
+          },
+          "priority": "medium"
+        },
+        {
+          "command_id": "550e8400-e29b-41d4-a716-446655440002",
+          "action_type": "restart",
+          "target": "instance",
+          "parameters": {
+            "mode": "graceful",
+            "timeout_seconds": 60
+          },
+          "priority": "high"
+        }
+      ],
+      "properties": {
+        "command_id": {
+          "description": "Unique command identifier",
+          "format": "uuid",
+          "title": "Command Id",
+          "type": "string"
+        },
+        "action_type": {
+          "description": "Type of remediation action",
+          "enum": ["config_change", "os_reconfig", "restart"],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target resource (e.g., 'iris.cpf', 'hugepages', 'instance')",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Target",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {},
+          "description": "Action-specific parameters",
+          "title": "Parameters",
+          "type": "object"
+        },
+        "priority": {
+          "default": "medium",
+          "description": "Execution priority",
+          "enum": ["low", "medium", "high", "critical"],
+          "title": "Priority",
+          "type": "string"
+        },
+        "requester": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Identity of requesting system",
+          "title": "Requester"
+        }
+      },
+      "required": ["action_type", "target", "parameters"],
+      "title": "RemediationCommand",
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/RemediationCommand",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

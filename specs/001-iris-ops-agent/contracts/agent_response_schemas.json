@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "OrchestratorResponse": {
+      "description": "Response from OrchestratorAgent after analyzing command",
+      "examples": [
+        {
+          "agent_type": "config",
+          "command_str": "{\"section\": \"Startup\", \"key\": \"globals\", \"value\": \"20000\"}",
+          "rationale": "Command modifies IRIS CPF configuration parameter 'globals'",
+          "requires_validation": true,
+          "estimated_risk": "medium"
+        }
+      ],
+      "properties": {
+        "agent_type": {
+          "description": "Which agent should handle this command",
+          "enum": ["config", "os", "restart", "none"],
+          "title": "Agent Type",
+          "type": "string"
+        },
+        "command_str": {
+          "description": "Serialized command to pass to selected agent",
+          "title": "Command Str",
+          "type": "string"
+        },
+        "rationale": {
+          "description": "Explanation of agent selection decision",
+          "title": "Rationale",
+          "type": "string"
+        },
+        "requires_validation": {
+          "description": "Whether pre-execution validation needed",
+          "title": "Requires Validation",
+          "type": "boolean"
+        },
+        "estimated_risk": {
+          "description": "Risk assessment for operation",
+          "enum": ["low", "medium", "high"],
+          "title": "Estimated Risk",
+          "type": "string"
+        }
+      },
+      "required": ["agent_type", "command_str", "rationale", "requires_validation", "estimated_risk"],
+      "title": "OrchestratorResponse",
+      "type": "object"
+    },
+    "ConfigAgentResponse": {
+      "description": "Response from ConfigAgent after configuration change",
+      "examples": [
+        {
+          "success": true,
+          "section": "Startup",
+          "key": "globals",
+          "old_value": "10000",
+          "new_value": "20000",
+          "requires_restart": true,
+          "backup_path": "/usr/local/IRIS/iris.cpf.backup.20260206",
+          "error_message": null
+        }
+      ],
+      "properties": {
+        "success": {
+          "description": "Whether operation succeeded",
+          "title": "Success",
+          "type": "boolean"
+        },
+        "section": {
+          "description": "CPF section modified",
+          "title": "Section",
+          "type": "string"
+        },
+        "key": {
+          "description": "Configuration key modified",
+          "title": "Key",
+          "type": "string"
+        },
+        "old_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Previous value",
+          "title": "Old Value"
+        },
+        "new_value": {
+          "description": "New value",
+          "title": "New Value",
+          "type": "string"
+        },
+        "requires_restart": {
+          "description": "Whether IRIS restart required",
+          "title": "Requires Restart",
+          "type": "boolean"
+        },
+        "backup_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Path to CPF backup file",
+          "title": "Backup Path"
+        },
+        "error_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Error details if failed",
+          "title": "Error Message"
+        }
+      },
+      "required": ["success", "section", "key", "new_value", "requires_restart"],
+      "title": "ConfigAgentResponse",
+      "type": "object"
+    },
+    "OSAgentResponse": {
+      "description": "Response from OSAgent after OS reconfiguration",
+      "examples": [
+        {
+          "success": true,
+          "resource_type": "memory",
+          "operation": "configure_huge_pages",
+          "old_value": "8192 pages",
+          "new_value": "16384 pages",
+          "validation_passed": true,
+          "rollback_available": true,
+          "error_message": null
+        }
+      ],
+      "properties": {
+        "success": {
+          "description": "Whether operation succeeded",
+          "title": "Success",
+          "type": "boolean"
+        },
+        "resource_type": {
+          "description": "Resource type modified",
+          "enum": ["memory", "cpu"],
+          "title": "Resource Type",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Specific operation performed",
+          "title": "Operation",
+          "type": "string"
+        },
+        "old_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Previous setting",
+          "title": "Old Value"
+        },
+        "new_value": {
+          "description": "New setting",
+          "title": "New Value",
+          "type": "string"
+        },
+        "validation_passed": {
+          "description": "Whether post-change validation passed",
+          "title": "Validation Passed",
+          "type": "boolean"
+        },
+        "rollback_available": {
+          "description": "Whether rollback is possible",
+          "title": "Rollback Available",
+          "type": "boolean"
+        },
+        "error_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Error details if failed",
+          "title": "Error Message"
+        }
+      },
+      "required": ["success", "resource_type", "operation", "new_value", "validation_passed", "rollback_available"],
+      "title": "OSAgentResponse",
+      "type": "object"
+    },
+    "RestartAgentResponse": {
+      "description": "Response from RestartAgent after instance restart",
+      "examples": [
+        {
+          "success": true,
+          "mode": "graceful",
+          "shutdown_duration_seconds": 45.3,
+          "startup_duration_seconds": 12.7,
+          "databases_mounted": 7,
+          "validation_passed": true,
+          "error_message": null
+        }
+      ],
+      "properties": {
+        "success": {
+          "description": "Whether restart succeeded",
+          "title": "Success",
+          "type": "boolean"
+        },
+        "mode": {
+          "description": "Restart mode used",
+          "enum": ["graceful", "forced"],
+          "title": "Mode",
+          "type": "string"
+        },
+        "shutdown_duration_seconds": {
+          "description": "Time taken for shutdown",
+          "title": "Shutdown Duration Seconds",
+          "type": "number"
+        },
+        "startup_duration_seconds": {
+          "description": "Time taken for startup",
+          "title": "Startup Duration Seconds",
+          "type": "number"
+        },
+        "databases_mounted": {
+          "description": "Number of databases mounted",
+          "title": "Databases Mounted",
+          "type": "integer"
+        },
+        "validation_passed": {
+          "description": "Whether post-startup validation passed",
+          "title": "Validation Passed",
+          "type": "boolean"
+        },
+        "error_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Error details if failed",
+          "title": "Error Message"
+        }
+      },
+      "required": ["success", "mode", "shutdown_duration_seconds", "startup_duration_seconds", "databases_mounted", "validation_passed"],
+      "title": "RestartAgentResponse",
+      "type": "object"
+    }
+  }
+}

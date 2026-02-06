@@ -1,0 +1,55 @@
+{
+  "$defs": {
+    "ErrorMessage": {
+      "description": "Represents an IRIS messages.log error entry.\n\nExample format:\n11/14/25-09:45:57:762 (50803) 2 [Generic.Event] Kerberos authentication unavailable",
+      "examples": [
+        {
+          "timestamp": "02/06/26-14:30:45:123",
+          "process_id": 12345,
+          "severity": 2,
+          "category": "[Utility.Event]",
+          "message_text": "LMF Error: No valid license key. No valid local file found."
+        }
+      ],
+      "properties": {
+        "timestamp": {
+          "description": "Timestamp in MM/DD/YY-HH:MM:SS:mmm format",
+          "pattern": "^\\d{2}/\\d{2}/\\d{2}-\\d{2}:\\d{2}:\\d{2}:\\d{3}$",
+          "title": "Timestamp",
+          "type": "string"
+        },
+        "process_id": {
+          "description": "IRIS process ID",
+          "minimum": 1,
+          "maximum": 999999,
+          "title": "Process Id",
+          "type": "integer"
+        },
+        "severity": {
+          "description": "Severity level: 0=info, 1=warning, 2=error, 3=fatal",
+          "enum": [0, 1, 2, 3],
+          "title": "Severity",
+          "type": "integer"
+        },
+        "category": {
+          "description": "Error category tag in [Category.Subcategory] format",
+          "pattern": "^\\[[\\w\\.]+\\]$",
+          "title": "Category",
+          "type": "string"
+        },
+        "message_text": {
+          "description": "Human-readable error description",
+          "maxLength": 500,
+          "minLength": 10,
+          "title": "Message Text",
+          "type": "string"
+        }
+      },
+      "required": ["timestamp", "process_id", "severity", "category", "message_text"],
+      "title": "ErrorMessage",
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/ErrorMessage",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
