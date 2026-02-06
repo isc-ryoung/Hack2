@@ -22,13 +22,13 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directory structure (src/, tests/, notebooks/, specs/, log_samples/)
-- [ ] T002 Initialize Python 3.10+ project with pyproject.toml or requirements.txt
-- [ ] T003 [P] Add dependencies: openai-agents-sdk, pydantic>=2.0, structlog, pytest, pytest-mock, pytest-asyncio, python-dotenv
-- [ ] T004 [P] Configure .env.example with API key placeholders, model settings, token budgets
-- [ ] T005 [P] Setup .gitignore for Python (.venv/, __pycache__/, .env, *.pyc)
-- [ ] T006 [P] Create README.md with project overview, installation instructions, and quickstart
-- [ ] T007 [P] Configure pytest.ini with test paths and markers
+- [X] T001 Create project directory structure (src/, tests/, notebooks/, specs/, log_samples/)
+- [X] T002 Initialize Python 3.10+ project with pyproject.toml or requirements.txt
+- [X] T003 [P] Add dependencies: openai-agents-sdk, pydantic>=2.0, structlog, pytest, pytest-mock, pytest-asyncio, python-dotenv
+- [X] T004 [P] Configure .env.example with API key placeholders, model settings, token budgets
+- [X] T005 [P] Setup .gitignore for Python (.venv/, __pycache__/, .env, *.pyc)
+- [X] T006 [P] Create README.md with project overview, installation instructions, and quickstart
+- [X] T007 [P] Configure pytest.ini with test paths and markers
 
 ---
 
