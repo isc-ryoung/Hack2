@@ -40,35 +40,35 @@
 
 ### Foundational Infrastructure
 
-- [ ] T008 [P] Implement structured logging setup with structlog in src/utils/logger.py
-- [ ] T009 [P] Create trace ID context management using contextvars in src/utils/logger.py
-- [ ] T010 [P] Implement cost tracking utilities (token counting, budget alerts) in src/utils/cost_tracker.py
-- [ ] T011 [P] Create configuration management from .env in src/utils/config.py
-- [ ] T012 Setup OpenAI client wrapper with API key management, retries, timeouts in src/utils/llm_client.py
-- [ ] T013 [P] Create base Agent class with observability hooks in src/agents/base_agent.py
-- [ ] T014 [P] Implement prompt template management system in src/prompts/__init__.py
+- [X] T008 [P] Implement structured logging setup with structlog in src/utils/logger.py
+- [X] T009 [P] Create trace ID context management using contextvars in src/utils/logger.py
+- [X] T010 [P] Implement cost tracking utilities (token counting, budget alerts) in src/utils/cost_tracker.py
+- [X] T011 [P] Create configuration management from .env in src/utils/config.py
+- [X] T012 Setup OpenAI client wrapper with API key management, retries, timeouts in src/utils/llm_client.py
+- [X] T013 [P] Create base Agent class with observability hooks in src/agents/base_agent.py
+- [X] T014 [P] Implement prompt template management system in src/prompts/__init__.py
 
 ### Foundational Data Models
 
-- [ ] T015 [P] Create ErrorMessage Pydantic model in src/models/error_message.py
-- [ ] T016 [P] Create RemediationCommand Pydantic model in src/models/remediation_command.py
-- [ ] T017 [P] Create ExecutionContext model for runtime state in src/models/execution_context.py
-- [ ] T018 [P] Create agent response models (OrchestratorResponse, ConfigAgentResponse, OSAgentResponse, RestartAgentResponse) in src/models/agent_responses.py
+- [X] T015 [P] Create ErrorMessage Pydantic model in src/models/error_message.py
+- [X] T016 [P] Create RemediationCommand Pydantic model in src/models/remediation_command.py
+- [X] T017 [P] Create ExecutionContext model for runtime state in src/models/execution_context.py
+- [X] T018 [P] Create agent response models (OrchestratorResponse, ConfigAgentResponse, OSAgentResponse, RestartAgentResponse) in src/models/agent_responses.py
 
 ### Foundational Services
 
-- [ ] T019 [P] Implement log parser service to extract patterns from log_samples/messages.log in src/services/log_parser.py
-- [ ] T020 [P] Implement CPF file manager with configparser in src/services/cpf_manager.py
+- [X] T019 [P] Implement log parser service to extract patterns from log_samples/messages.log in src/services/log_parser.py
+- [X] T020 [P] Implement CPF file manager with configparser in src/services/cpf_manager.py
 
 ### Foundational Tests
 
-- [ ] T021 [P] Unit test for logger setup and trace ID propagation in tests/unit/test_logger.py
-- [ ] T022 [P] Unit test for cost tracker with token counting in tests/unit/test_cost_tracker.py
-- [ ] T023 [P] Unit test for ErrorMessage model validation in tests/unit/test_error_message_model.py
-- [ ] T024 [P] Unit test for RemediationCommand model validation in tests/unit/test_remediation_command_model.py
-- [ ] T025 [P] Unit test for log parser with sample log file in tests/unit/test_log_parser.py
-- [ ] T026 [P] Unit test for CPF manager read/write operations in tests/unit/test_cpf_manager.py
-- [ ] T027 [P] Create test fixtures directory with sample files (tests/fixtures/sample_messages.log, sample_iris.cpf, sample_commands.json)
+- [X] T021 [P] Unit test for logger setup and trace ID propagation in tests/unit/test_logger.py
+- [X] T022 [P] Unit test for cost tracker with token counting in tests/unit/test_cost_tracker.py
+- [X] T023 [P] Unit test for ErrorMessage model validation in tests/unit/test_error_message_model.py
+- [X] T024 [P] Unit test for RemediationCommand model validation in tests/unit/test_remediation_command_model.py
+- [X] T025 [P] Unit test for log parser with sample log file in tests/unit/test_log_parser.py
+- [X] T026 [P] Unit test for CPF manager read/write operations in tests/unit/test_cpf_manager.py
+- [X] T027 [P] Create test fixtures directory with sample files (tests/fixtures/sample_messages.log, sample_iris.cpf, sample_commands.json)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -92,14 +92,14 @@
 
 ### Implementation for User Story 1
 
-- [ ] T033 [P] [US1] Create ErrorGenerationRequest model in src/models/error_message.py
-- [ ] T034 [P] [US1] Design prompt templates for error generation (config, license, OS, journal) in src/prompts/error_generation.py
-- [ ] T035 [US1] Implement log pattern extraction on startup in src/services/log_parser.py (load and cache patterns)
-- [ ] T036 [US1] Implement ErrorGeneratorAgent with LLM integration in src/agents/error_generator.py
-- [ ] T037 [US1] Add structured output parsing using Pydantic response_format in src/agents/error_generator.py
-- [ ] T038 [US1] Add observability (trace IDs, token tracking, pattern logging) to ErrorGeneratorAgent
-- [ ] T039 [US1] Add cost tracking and budget alerts for error generation
-- [ ] T040 [US1] Implement fallback to regex templates when LLM unavailable in src/agents/error_generator.py
+- [X] T033 [P] [US1] Create ErrorGenerationRequest model in src/models/error_message.py
+- [X] T034 [P] [US1] Design prompt templates for error generation (config, license, OS, journal) in src/prompts/error_generation.py
+- [X] T035 [US1] Implement log pattern extraction on startup in src/services/log_parser.py (load and cache patterns)
+- [X] T036 [US1] Implement ErrorGeneratorAgent with LLM integration in src/agents/error_generator.py
+- [X] T037 [US1] Add structured output parsing using Pydantic response_format in src/agents/error_generator.py
+- [X] T038 [US1] Add observability (trace IDs, token tracking, pattern logging) to ErrorGeneratorAgent
+- [X] T039 [US1] Add cost tracking and budget alerts for error generation
+- [X] T040 [US1] Implement fallback to regex templates when LLM unavailable in src/agents/error_generator.py
 - [ ] T041 [P] [US1] Create workshop notebook demonstrating error generation in notebooks/demos/01_error_generation_demo.ipynb
 
 **Checkpoint**: User Story 1 fully functional - can generate realistic IRIS errors independently
@@ -121,12 +121,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T046 [P] [US2] Implement MessageSenderService with endpoint configuration in src/services/message_sender.py
-- [ ] T047 [US2] Add message formatting for external consumption (JSON serialization) in src/services/message_sender.py
-- [ ] T048 [US2] Implement transmission logic with HTTP client in src/services/message_sender.py
-- [ ] T049 [US2] Add error handling and message queueing for endpoint unavailability in src/services/message_sender.py
-- [ ] T050 [US2] Add chronological ordering for message transmission in src/services/message_sender.py
-- [ ] T051 [US2] Add observability (trace IDs, transmission status, delivery confirmation) to MessageSenderService
+- [X] T046 [P] [US2] Implement MessageSenderService with endpoint configuration in src/services/message_sender.py
+- [X] T047 [US2] Add message formatting for external consumption (JSON serialization) in src/services/message_sender.py
+- [X] T048 [US2] Implement transmission logic with HTTP client in src/services/message_sender.py
+- [X] T049 [US2] Add error handling and message queueing for endpoint unavailability in src/services/message_sender.py
+- [X] T050 [US2] Add chronological ordering for message transmission in src/services/message_sender.py
+- [X] T051 [US2] Add observability (trace IDs, transmission status, delivery confirmation) to MessageSenderService
 - [ ] T052 [P] [US2] Create workshop notebook demonstrating message output in notebooks/demos/02_message_output_demo.ipynb
 - [ ] T053 [US2] Integrate ErrorGeneratorAgent with MessageSenderService in src/agents/error_generator.py
 
@@ -150,15 +150,15 @@
 
 ### Implementation for User Story 3
 
-- [ ] T059 [P] [US3] Implement CommandReceiverService with JSON parsing in src/services/command_receiver.py
-- [ ] T060 [US3] Add schema validation using RemediationCommand model in src/services/command_receiver.py
-- [ ] T061 [US3] Implement command queue with priority ordering in src/services/command_receiver.py
-- [ ] T062 [US3] Add conflict detection for commands targeting same resource in src/services/command_receiver.py
-- [ ] T063 [P] [US3] Design prompt templates for orchestration (agent selection) in src/prompts/orchestration.py
-- [ ] T064 [US3] Implement OrchestratorAgent for command routing in src/agents/orchestrator.py
-- [ ] T065 [US3] Add LLM integration for intelligent agent selection in src/agents/orchestrator.py
-- [ ] T066 [US3] Add risk assessment and validation requirements in src/agents/orchestrator.py
-- [ ] T067 [US3] Add observability (trace IDs, routing decisions, rationale logging) to OrchestratorAgent
+- [X] T059 [P] [US3] Implement CommandReceiverService with JSON parsing in src/services/command_receiver.py
+- [X] T060 [US3] Add schema validation using RemediationCommand model in src/services/command_receiver.py
+- [X] T061 [US3] Implement command queue with priority ordering in src/services/command_receiver.py
+- [X] T062 [US3] Add conflict detection for commands targeting same resource in src/services/command_receiver.py
+- [X] T063 [P] [US3] Design prompt templates for orchestration (agent selection) in src/prompts/orchestration.py
+- [X] T064 [US3] Implement OrchestratorAgent for command routing in src/agents/orchestrator.py
+- [X] T065 [US3] Add LLM integration for intelligent agent selection in src/agents/orchestrator.py
+- [X] T066 [US3] Add risk assessment and validation requirements in src/agents/orchestrator.py
+- [X] T067 [US3] Add observability (trace IDs, routing decisions, rationale logging) to OrchestratorAgent
 - [ ] T068 [P] [US3] Create workshop notebook demonstrating command reception in notebooks/demos/03_command_reception_demo.ipynb
 
 **Checkpoint**: User Stories 1-3 complete - full data flow from generation → output → reception → orchestration
@@ -181,14 +181,14 @@
 
 ### Implementation for User Story 4
 
-- [ ] T074 [P] [US4] Extend CPF manager with backup/rollback capabilities in src/services/cpf_manager.py
-- [ ] T075 [US4] Add restart requirement determination (LLM-assisted for ambiguous cases) in src/services/cpf_manager.py
+- [X] T074 [P] [US4] Extend CPF manager with backup/rollback capabilities in src/services/cpf_manager.py
+- [X] T075 [US4] Add restart requirement determination (LLM-assisted for ambiguous cases) in src/services/cpf_manager.py
 - [ ] T076 [P] [US4] Design prompt templates for config validation in src/prompts/validation.py
-- [ ] T077 [US4] Implement ConfigAgent with CPF modification logic in src/agents/config_agent.py
-- [ ] T078 [US4] Add pre-condition validation (file permissions, CPF existence) in src/agents/config_agent.py
-- [ ] T079 [US4] Add post-modification validation (CPF syntax check) in src/agents/config_agent.py
-- [ ] T080 [US4] Implement ConfigAgentResponse structured output in src/agents/config_agent.py
-- [ ] T081 [US4] Add observability (trace IDs, before/after values, restart determination) to ConfigAgent
+- [X] T077 [US4] Implement ConfigAgent with CPF modification logic in src/agents/config_agent.py
+- [X] T078 [US4] Add pre-condition validation (file permissions, CPF existence) in src/agents/config_agent.py
+- [X] T079 [US4] Add post-modification validation (CPF syntax check) in src/agents/config_agent.py
+- [X] T080 [US4] Implement ConfigAgentResponse structured output in src/agents/config_agent.py
+- [X] T081 [US4] Add observability (trace IDs, before/after values, restart determination) to ConfigAgent
 - [ ] T082 [P] [US4] Create workshop notebook demonstrating config changes in notebooks/demos/04_config_agent_demo.ipynb
 
 **Checkpoint**: User Story 4 complete - can execute IRIS configuration changes independently
@@ -211,14 +211,14 @@
 
 ### Implementation for User Story 5
 
-- [ ] T088 [P] [US5] Implement OS resource validation (/proc/meminfo parsing) in src/agents/os_agent.py
-- [ ] T089 [US5] Implement memory allocation logic (huge pages, shared memory) in src/agents/os_agent.py
-- [ ] T090 [US5] Implement CPU configuration logic (affinity, allocation) in src/agents/os_agent.py
-- [ ] T091 [US5] Add subprocess execution with timeout and error capture in src/agents/os_agent.py
-- [ ] T092 [US5] Add permission validation before OS changes in src/agents/os_agent.py
-- [ ] T093 [US5] Add post-change validation (verify settings in effect) in src/agents/os_agent.py
-- [ ] T094 [US5] Implement OSAgentResponse structured output in src/agents/os_agent.py
-- [ ] T095 [US5] Add observability (trace IDs, commands executed, validation results) to OSAgent
+- [X] T088 [P] [US5] Implement OS resource validation (/proc/meminfo parsing) in src/agents/os_agent.py
+- [X] T089 [US5] Implement memory allocation logic (huge pages, shared memory) in src/agents/os_agent.py
+- [X] T090 [US5] Implement CPU configuration logic (affinity, allocation) in src/agents/os_agent.py
+- [X] T091 [US5] Add subprocess execution with timeout and error capture in src/agents/os_agent.py
+- [X] T092 [US5] Add permission validation before OS changes in src/agents/os_agent.py
+- [X] T093 [US5] Add post-change validation (verify settings in effect) in src/agents/os_agent.py
+- [X] T094 [US5] Implement OSAgentResponse structured output in src/agents/os_agent.py
+- [X] T095 [US5] Add observability (trace IDs, commands executed, validation results) to OSAgent
 - [ ] T096 [P] [US5] Create workshop notebook demonstrating OS changes in notebooks/demos/05_os_agent_demo.ipynb
 
 **Checkpoint**: User Story 5 complete - can execute OS-level changes independently
@@ -241,13 +241,13 @@
 
 ### Implementation for User Story 6
 
-- [ ] T102 [P] [US6] Implement connection tracking and draining logic in src/agents/restart_agent.py
-- [ ] T103 [US6] Implement graceful shutdown sequence with timeout in src/agents/restart_agent.py
-- [ ] T104 [US6] Implement forced shutdown for emergency scenarios in src/agents/restart_agent.py
-- [ ] T105 [US6] Implement IRIS startup monitoring (log parsing for initialization) in src/agents/restart_agent.py
-- [ ] T106 [US6] Add post-startup validation (connection test, database mount check) in src/agents/restart_agent.py
-- [ ] T107 [US6] Implement RestartAgentResponse structured output in src/agents/restart_agent.py
-- [ ] T108 [US6] Add observability (trace IDs, connection counts, shutdown/startup status) to RestartAgent
+- [X] T102 [P] [US6] Implement connection tracking and draining logic in src/agents/restart_agent.py
+- [X] T103 [US6] Implement graceful shutdown sequence with timeout in src/agents/restart_agent.py
+- [X] T104 [US6] Implement forced shutdown for emergency scenarios in src/agents/restart_agent.py
+- [X] T105 [US6] Implement IRIS startup monitoring (log parsing for initialization) in src/agents/restart_agent.py
+- [X] T106 [US6] Add post-startup validation (connection test, database mount check) in src/agents/restart_agent.py
+- [X] T107 [US6] Implement RestartAgentResponse structured output in src/agents/restart_agent.py
+- [X] T108 [US6] Add observability (trace IDs, connection counts, shutdown/startup status) to RestartAgent
 - [ ] T109 [P] [US6] Create workshop notebook demonstrating restart operations in notebooks/demos/06_restart_agent_demo.ipynb
 
 **Checkpoint**: All user stories complete - full system operational
